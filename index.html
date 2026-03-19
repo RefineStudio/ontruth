@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OurTruth — Know what's true.</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; max-width: 100%; }
+
+  :root {
+    --black: #111111;
+    --gray-900: #1a1a1a;
+    --gray-800: #2d2d2d;
+    --gray-700: #404040;
+    --gray-600: #555555;
+    --gray-500: #777777;
+    --gray-400: #999999;
+    --gray-300: #bcbcbc;
+    --gray-200: #e0e0e0;
+    --gray-150: #ebebeb;
+    --gray-100: #f3f3f3;
+    --gray-50: #f9f8f6;
+    --white: #ffffff;
+    --cream: #fffcf8;
+
+    --warm-100: #fff4e6;
+    --warm-200: #ffe8cc;
+    --warm-300: #ffd19a;
+    --warm-400: #ffb366;
+    --warm-500: #f59e42;
+    --warm-600: #e08830;
+
+    --true: #1a7f37;
+    --true-bg: #dafbe1;
+    --mostly-true: #3d8b4f;
+    --mostly-true-bg: #e6f9ec;
+    --mixed: #9a6700;
+    --mixed-bg: #fff8c5;
+    --mostly-false: #bc4c00;
+    --mostly-false-bg: #fff1e5;
+    --false: #cf222e;
+    --false-bg: #ffebe9;
+    --unverifiable: #656d76;
+    --unverifiable-bg: #eef1f4;
+
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --max-w: 1180px;
+    --px: 40px;
+  }
+
+  body {
+    font-family: var(--sans);
+    color: var(--black);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- GRADIENT BAR ---- */
+  .gradient-bar {
+    height: 4px;
+    background: linear-gradient(90deg, #f59e42, #f97316, #fb923c, #fdba74, #fcd34d, #f59e42);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+  }
+
+  /* ---- NAV ---- */
+  .nav {
+    position: fixed;
+    top: 4px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--gray-150);
+    height: 56px;
+  }
+  .nav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .nav-logo {
+    text-decoration: none;
+    color: var(--black);
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .nav-logo-mark {
+    width: 22px;
+    height: 22px;
+    background: var(--black);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-logo-mark svg { width: 13px; height: 13px; }
+  .nav-center {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-left: auto;
+    margin-right: auto;
+    list-style: none;
+  }
+  .nav-center a {
+    text-decoration: none;
+    color: var(--gray-600);
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: color 0.12s;
+  }
+  .nav-center a:hover { color: var(--black); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-btn-ghost {
+    text-decoration: none;
+    color: var(--gray-700);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 7px;
+    border: 1px solid var(--gray-200);
+    transition: border-color 0.12s;
+  }
+  .nav-btn-ghost:hover { border-color: var(--gray-400); }
+  .nav-btn-fill {
+    text-decoration: none;
+    color: var(--white);
+    background: var(--black);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 16px;
+    border-radius: 7px;
+    transition: background 0.12s;
+  }
+  .nav-btn-fill:hover { background: var(--gray-800); }
+  .nav-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: auto;
+  }
+  .nav-mobile-toggle svg { width: 22px; height: 22px; }
+
+  /* ---- HERO ---- */
+  .hero {
+    padding: 108px var(--px) 0;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: start;
+    padding-bottom: 48px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--black);
+  }
+  .hero-right {
+    padding-top: 16px;
+  }
+  .hero-right p {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--gray-600);
+    margin-bottom: 28px;
+  }
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--black);
+    color: var(--white);
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.12s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-dark:hover { background: var(--gray-800); }
+  .btn-dark svg { width: 16px; height: 16px; }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: transparent;
+    color: var(--gray-700);
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--gray-200);
+    transition: border-color 0.12s, color 0.12s;
+  }
+  .btn-outline:hover { border-color: var(--gray-400); color: var(--black); }
+
+  /* ---- HERO PRODUCT MOCKUP ---- */
+  .hero-mockup {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--px) 0;
+  }
+  .mockup-container {
+    border-radius: 14px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 25%, #fecaca 50%, #e9d5ff 75%, #bfdbfe 100%);
+    padding: 32px 32px 0;
+    position: relative;
+  }
+  .browser-chrome {
+    border-radius: 10px 10px 0 0;
+    background: var(--white);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.04);
+    overflow: hidden;
+  }
+  .browser-topbar {
+    height: 36px;
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-150);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 7px;
+  }
+  .b-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--gray-200); }
+  .b-url {
+    flex: 1;
+    margin-left: 6px;
+    height: 24px;
+    background: var(--white);
+    border-radius: 5px;
+    border: 1px solid var(--gray-150);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 11.5px;
+    color: var(--gray-400);
+    gap: 6px;
+  }
+  .b-url svg { width: 11px; height: 11px; flex-shrink: 0; color: var(--gray-300); }
+  .browser-body {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    min-height: 320px;
+  }
+  .article-col {
+    padding: 24px 28px;
+    border-right: 1px solid var(--gray-150);
+  }
+  .article-meta {
+    font-size: 11px;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .article-h {
+    font-family: var(--serif);
+    font-size: 24px;
+    line-height: 1.25;
+    color: var(--black);
+    margin-bottom: 14px;
+  }
+  .article-p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--gray-600);
+    margin-bottom: 10px;
+  }
+  .hl {
+    background: linear-gradient(to bottom, transparent 60%, rgba(245,158,66,0.25) 60%);
+    color: var(--black);
+    font-weight: 500;
+  }
+  .popup-col {
+    padding: 20px;
+    background: var(--gray-50);
+  }
+  .popup-inner {
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--gray-150);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+  .pop-head {
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border-bottom: 1px solid var(--gray-150);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--black);
+  }
+  .pop-mark {
+    width: 18px;
+    height: 18px;
+    background: var(--black);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pop-mark svg { width: 11px; height: 11px; }
+  .pop-body { padding: 14px; }
+  .pop-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-weight: 600;
+    color: var(--gray-400);
+    margin-bottom: 6px;
+  }
+  .pop-claim {
+    font-size: 12.5px;
+    color: var(--gray-700);
+    line-height: 1.5;
+    font-style: italic;
+    border-left: 2.5px solid var(--warm-500);
+    padding-left: 10px;
+    margin-bottom: 14px;
+  }
+  .pop-verdict {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    margin-bottom: 14px;
+  }
+  .pop-verdict.mf { background: var(--mostly-false-bg); color: var(--mostly-false); }
+  .pop-verdict svg { width: 13px; height: 13px; }
+  .pop-src-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    color: var(--gray-400);
+    margin-bottom: 6px;
+  }
+  .pop-src {
+    display: flex;
+    gap: 8px;
+    padding: 7px 0;
+    border-top: 1px solid var(--gray-100);
+    font-size: 11.5px;
+    line-height: 1.4;
+    color: var(--gray-700);
+  }
+  .pop-src-n {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    background: var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--gray-500);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .pop-src a { color: var(--warm-600); font-size: 10.5px; text-decoration: none; }
+
+  /* ---- QUOTE STRIP ---- */
+  .quote-strip {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 32px var(--px);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid var(--gray-150);
+  }
+  .quote-strip blockquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--gray-700);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .quote-strip cite {
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 12px;
+    color: var(--gray-400);
+    white-space: nowrap;
+  }
+
+  /* ---- STATS ---- */
+  .stats {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 40px var(--px);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-bottom: 1px solid var(--gray-150);
+  }
+  .stat {
+    text-align: center;
+    padding: 8px 0;
+  }
+  .stat:not(:last-child) { border-right: 1px solid var(--gray-150); }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -1px;
+  }
+  .stat-label {
+    font-size: 12.5px;
+    color: var(--gray-500);
+    font-weight: 500;
+  }
+
+  /* ---- EDITORIAL BLOCK ---- */
+  .editorial {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 80px var(--px);
+    border-bottom: 1px solid var(--gray-150);
+  }
+  .editorial-inner {
+    max-width: 720px;
+  }
+  .editorial p {
+    font-family: var(--serif);
+    font-size: 28px;
+    line-height: 1.45;
+    color: var(--black);
+    letter-spacing: -0.3px;
+  }
+  .editorial p em {
+    font-style: italic;
+    color: var(--gray-500);
+  }
+
+  /* ---- SPLIT SECTIONS ---- */
+  .split {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 80px var(--px);
+    display: grid;
+    grid-template-columns: 0.45fr 0.55fr;
+    gap: 64px;
+    align-items: start;
+    border-bottom: 1px solid var(--gray-150);
+  }
+  .split.reverse { grid-template-columns: 0.55fr 0.45fr; }
+  .split-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: var(--gray-400);
+    margin-bottom: 14px;
+  }
+  .split h2 {
+    font-family: var(--serif);
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.8px;
+    color: var(--black);
+    margin-bottom: 18px;
+  }
+  .split-text p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--gray-600);
+    margin-bottom: 16px;
+  }
+  .split-text-right {
+    padding-top: 8px;
+  }
+  .split-text-right p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--gray-600);
+  }
+
+  /* ---- FLOW STEPS ---- */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .flow-step {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+    padding: 18px 0;
+    border-top: 1px solid var(--gray-150);
+  }
+  .flow-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    background: var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray-600);
+  }
+  .flow-step h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .flow-step p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--gray-500);
+  }
+
+  /* ---- VERDICT SECTION ---- */
+  .verdicts-section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 80px var(--px);
+    border-bottom: 1px solid var(--gray-150);
+  }
+  .verdicts-header {
+    display: grid;
+    grid-template-columns: 0.45fr 0.55fr;
+    gap: 64px;
+    margin-bottom: 40px;
+  }
+  .verdicts-header h2 {
+    font-family: var(--serif);
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.8px;
+  }
+  .verdicts-header p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--gray-600);
+    padding-top: 8px;
+  }
+  .verdict-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--gray-150);
+    border: 1px solid var(--gray-150);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .vt-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    background: var(--white);
+  }
+  .vt-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    flex-shrink: 0;
+    min-width: 110px;
+  }
+  .vt-badge svg { width: 13px; height: 13px; }
+  .vt-desc {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.45;
+  }
+  .vb-true { background: var(--true-bg); color: var(--true); }
+  .vb-mt { background: var(--mostly-true-bg); color: var(--mostly-true); }
+  .vb-mx { background: var(--mixed-bg); color: var(--mixed); }
+  .vb-mf { background: var(--mostly-false-bg); color: var(--mostly-false); }
+  .vb-f { background: var(--false-bg); color: var(--false); }
+  .vb-u { background: var(--unverifiable-bg); color: var(--unverifiable); }
+
+  /* ---- PRODUCT SHOWCASE ---- */
+  .showcase {
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-150);
+  }
+  .showcase-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 80px var(--px);
+  }
+  .showcase-header {
+    display: grid;
+    grid-template-columns: 0.45fr 0.55fr;
+    gap: 64px;
+    margin-bottom: 40px;
+  }
+  .showcase-header h2 {
+    font-family: var(--serif);
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.8px;
+  }
+  .showcase-header p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--gray-600);
+    padding-top: 8px;
+  }
+  .showcase-ui {
+    background: var(--white);
+    border: 1px solid var(--gray-150);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .showcase-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--gray-150);
+    padding: 0 20px;
+  }
+  .showcase-tab {
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-500);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .showcase-tab.active {
+    color: var(--black);
+    border-bottom-color: var(--black);
+    font-weight: 600;
+  }
+  .showcase-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .showcase-table th {
+    text-align: left;
+    padding: 10px 20px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    color: var(--gray-400);
+    border-bottom: 1px solid var(--gray-150);
+    background: var(--gray-50);
+  }
+  .showcase-table td {
+    padding: 12px 20px;
+    font-size: 13px;
+    color: var(--gray-700);
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: middle;
+  }
+  .showcase-table tr:last-child td { border-bottom: none; }
+  .st-claim { max-width: 340px; line-height: 1.4; }
+  .st-verdict {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+  .st-sources { color: var(--gray-500); font-size: 12px; }
+  .st-time { color: var(--gray-400); font-size: 12px; }
+
+  /* ---- TRUST SECTION ---- */
+  .trust-section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 80px var(--px);
+    border-bottom: 1px solid var(--gray-150);
+  }
+  .trust-header {
+    display: grid;
+    grid-template-columns: 0.45fr 0.55fr;
+    gap: 64px;
+    margin-bottom: 48px;
+  }
+  .trust-header h2 {
+    font-family: var(--serif);
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.8px;
+  }
+  .trust-header p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--gray-600);
+    padding-top: 8px;
+  }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--gray-150);
+    border: 1px solid var(--gray-150);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .trust-item {
+    padding: 28px 24px;
+    background: var(--white);
+  }
+  .trust-item h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .trust-item p {
+    font-size: 13px;
+    color: var(--gray-500);
+    line-height: 1.55;
+  }
+
+  /* ---- CTA ---- */
+  .cta {
+    background: var(--gray-900);
+  }
+  .cta-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 80px var(--px);
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .cta h2 {
+    font-family: var(--serif);
+    font-size: 44px;
+    line-height: 1.08;
+    letter-spacing: -1px;
+    color: var(--white);
+  }
+  .cta-right p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--gray-400);
+    margin-bottom: 24px;
+  }
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--white);
+    color: var(--black);
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.12s;
+  }
+  .btn-white:hover { background: var(--gray-100); }
+  .cta-note {
+    font-size: 12px;
+    color: var(--gray-500);
+    margin-top: 10px;
+  }
+
+  /* ---- FOOTER ---- */
+  .footer {
+    background: var(--gray-900);
+    border-top: 1px solid var(--gray-700);
+  }
+  .footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 28px var(--px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .footer-logo {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .footer-logo .f-mark {
+    width: 16px;
+    height: 16px;
+    background: var(--white);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer-logo .f-mark svg { width: 10px; height: 10px; }
+  .footer-copy {
+    font-size: 12px;
+    color: var(--gray-500);
+    margin-left: 10px;
+  }
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 12px;
+    color: var(--gray-400);
+    text-decoration: none;
+    transition: color 0.12s;
+  }
+  .footer-links a:hover { color: var(--white); }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 900px) {
+    :root { --px: 20px; }
+    .nav-center { display: none; }
+    .nav-right { display: none; }
+    .nav-mobile-toggle { display: block; }
+
+    .hero { padding-top: 88px; }
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding-bottom: 32px;
+    }
+    .hero h1 { font-size: 40px; }
+    .hero-right { padding-top: 0; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .btn-dark, .btn-outline { justify-content: center; }
+
+    .mockup-container { padding: 16px 16px 0; }
+    .browser-body {
+      grid-template-columns: 1fr;
+    }
+    .article-col { border-right: none; border-bottom: 1px solid var(--gray-150); padding: 16px; }
+    .popup-col { padding: 16px; }
+
+    .quote-strip { flex-direction: column; gap: 8px; text-align: left; }
+
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(-n+2) { border-bottom: 1px solid var(--gray-150); padding-bottom: 20px; }
+    .stat:nth-child(n+3) { padding-top: 20px; }
+    .stat:nth-child(3) { border-right: 1px solid var(--gray-150); }
+    .stat-num { font-size: 36px; }
+
+    .editorial { padding: 56px var(--px); }
+    .editorial p { font-size: 22px; }
+
+    .split {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 56px var(--px);
+    }
+    .split.reverse { grid-template-columns: 1fr; }
+    .split h2 { font-size: 32px; }
+
+    .verdicts-section { padding: 56px var(--px); }
+    .verdicts-header {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .verdicts-header h2 { font-size: 32px; }
+    .verdict-table { grid-template-columns: 1fr; }
+
+    .showcase-inner { padding: 56px var(--px); }
+    .showcase-header {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .showcase-header h2 { font-size: 32px; }
+    .showcase-table { font-size: 12px; }
+    .showcase-table th, .showcase-table td { padding: 10px 12px; }
+    .st-claim { max-width: 180px; }
+
+    .trust-section { padding: 56px var(--px); }
+    .trust-header {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .trust-header h2 { font-size: 32px; }
+    .trust-grid { grid-template-columns: 1fr; }
+
+    .cta-inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 56px var(--px);
+    }
+    .cta h2 { font-size: 34px; }
+
+    .footer-inner { flex-direction: column; gap: 12px; }
+  }
+
+  @media (min-width: 901px) and (max-width: 1100px) {
+    .hero h1 { font-size: 52px; }
+    .split h2, .verdicts-header h2, .showcase-header h2, .trust-header h2 { font-size: 34px; }
+    .stat-num { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- GRADIENT BAR -->
+<div class="gradient-bar"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      ourtruth
+    </a>
+    <ul class="nav-center">
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="https://app.joinourtruth.com" class="nav-btn-ghost">Open App</a>
+      <a href="https://app.joinourtruth.com" class="nav-btn-fill">Add to Chrome</a>
+    </div>
+    <button class="nav-mobile-toggle" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <h1>Know what's true.</h1>
+    </div>
+    <div class="hero-right">
+      <p>The only fact-checker built for the AI era. Highlight any claim on any webpage and get an instant, sourced verdict — right in your browser. Free, private, no account needed.</p>
+      <div class="hero-actions">
+        <a href="https://app.joinourtruth.com" class="btn-dark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12l3 3 5-5"/></svg>
+          Add to Chrome
+        </a>
+        <a href="#how" class="btn-outline">How it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT MOCKUP -->
+<div class="hero-mockup">
+  <div class="mockup-container">
+    <div class="browser-chrome">
+      <div class="browser-topbar">
+        <div class="b-dot"></div>
+        <div class="b-dot"></div>
+        <div class="b-dot"></div>
+        <div class="b-url">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
+          news-daily.com/article/global-economy-forecast-2026
+        </div>
+      </div>
+      <div class="browser-body">
+        <div class="article-col">
+          <div class="article-meta">Economy &middot; March 12, 2026</div>
+          <h3 class="article-h">Global Economic Outlook: What Experts Are Saying</h3>
+          <p class="article-p">Markets have shown mixed signals this quarter, with analysts debating the trajectory of growth. According to a recent report, <span class="hl">the global GDP is expected to grow by 4.2% in 2026, the highest rate in a decade</span>, driven largely by emerging markets and AI adoption.</p>
+          <p class="article-p">Several economists have pointed to inflationary pressures and geopolitical uncertainty as potential headwinds that could temper this optimism...</p>
+        </div>
+        <div class="popup-col">
+          <div class="popup-inner">
+            <div class="pop-head">
+              <div class="pop-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              ourtruth
+            </div>
+            <div class="pop-body">
+              <div class="pop-label">Claim</div>
+              <p class="pop-claim">"Global GDP is expected to grow by 4.2% in 2026, the highest rate in a decade."</p>
+              <div class="pop-verdict mf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                MOSTLY FALSE
+              </div>
+              <div class="pop-src-label">Sources</div>
+              <div class="pop-src">
+                <div class="pop-src-n">1</div>
+                <div>IMF projects 3.2% global growth for 2026, not 4.2%.<br><a href="#">imf.org/weo</a></div>
+              </div>
+              <div class="pop-src">
+                <div class="pop-src-n">2</div>
+                <div>World Bank estimate: 3.0%. Claim overstates consensus by ~30%.<br><a href="#">worldbank.org/gep</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE STRIP -->
+<div class="quote-strip">
+  <blockquote>"A simple tool that does what the biggest platforms refuse to — it actually tells you if something is true."</blockquote>
+  <cite>Early beta user, San Francisco</cite>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">12K+</div>
+    <div class="stat-label">Claims Checked</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">34K+</div>
+    <div class="stat-label">Sources Cited</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">2.1s</div>
+    <div class="stat-label">Avg. Verdict Time</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">0</div>
+    <div class="stat-label">Data Collected</div>
+  </div>
+</div>
+
+<!-- EDITORIAL -->
+<section class="editorial">
+  <div class="editorial-inner">
+    <p>Every day, millions of people read, believe, and share claims they never verified. Not because they don't care about truth — but because <em>there was never a tool fast enough to check in the moment.</em> OurTruth changes that. One highlight, one click, one answer.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="split" id="how">
+  <div class="split-text">
+    <div class="split-label">How it works</div>
+    <h2>From claim to clarity in seconds</h2>
+    <p>No accounts, no setup, no learning curve. Install the extension and start verifying. OurTruth works on any webpage, in any language, on any topic.</p>
+  </div>
+  <div>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div>
+          <h4>Highlight any claim</h4>
+          <p>Select text on any webpage — news articles, social posts, Wikipedia, blog comments, forum threads.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div>
+          <h4>Click "Evaluate"</h4>
+          <p>OurTruth cross-references the claim against academic databases, verified reporting, official statistics, and trusted fact-checkers.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div>
+          <h4>Read your verdict</h4>
+          <p>Receive a clear rating — TRUE to FALSE — with every source cited so you can verify it yourself.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERDICTS -->
+<section class="verdicts-section">
+  <div class="verdicts-header">
+    <h2>Six verdicts, zero ambiguity</h2>
+    <p>Every claim receives one of six transparent ratings. No vague "it's complicated." Each verdict comes with cited evidence you can check independently.</p>
+  </div>
+  <div class="verdict-table">
+    <div class="vt-row">
+      <div class="vt-badge vb-true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        TRUE
+      </div>
+      <span class="vt-desc">Accurate and supported by reliable, verifiable evidence.</span>
+    </div>
+    <div class="vt-row">
+      <div class="vt-badge vb-mt">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        MOSTLY TRUE
+      </div>
+      <span class="vt-desc">Largely accurate with minor omissions or imprecision in details.</span>
+    </div>
+    <div class="vt-row">
+      <div class="vt-badge vb-mx">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        MIXED
+      </div>
+      <span class="vt-desc">Contains both verifiable and unverifiable or inaccurate elements.</span>
+    </div>
+    <div class="vt-row">
+      <div class="vt-badge vb-mf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        MOSTLY FALSE
+      </div>
+      <span class="vt-desc">Significant inaccuracies. May contain a kernel of truth but misleads overall.</span>
+    </div>
+    <div class="vt-row">
+      <div class="vt-badge vb-f">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        FALSE
+      </div>
+      <span class="vt-desc">Not supported by evidence. Directly contradicts known, verified facts.</span>
+    </div>
+    <div class="vt-row">
+      <div class="vt-badge vb-u">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        UNVERIFIABLE
+      </div>
+      <span class="vt-desc">Insufficient public evidence exists to confirm or refute the claim.</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT SHOWCASE: RECENT CHECKS -->
+<section class="showcase">
+  <div class="showcase-inner">
+    <div class="showcase-header">
+      <h2>See OurTruth checking real claims</h2>
+      <p>Claims evaluated by real users across news, politics, health, and technology. Every verdict is backed by cited sources.</p>
+    </div>
+    <div class="showcase-ui">
+      <div class="showcase-tabs">
+        <div class="showcase-tab active">Recent</div>
+        <div class="showcase-tab">Trending</div>
+        <div class="showcase-tab">Politics</div>
+        <div class="showcase-tab">Health</div>
+      </div>
+      <table class="showcase-table">
+        <thead>
+          <tr>
+            <th>Claim</th>
+            <th>Verdict</th>
+            <th>Sources</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="st-claim">"Electric vehicles produce more lifetime CO2 than gas cars"</td>
+            <td><span class="st-verdict vb-f">FALSE</span></td>
+            <td class="st-sources">4 sources</td>
+            <td class="st-time">1.8s</td>
+          </tr>
+          <tr>
+            <td class="st-claim">"The US national debt crossed $36 trillion in 2025"</td>
+            <td><span class="st-verdict vb-true">TRUE</span></td>
+            <td class="st-sources">3 sources</td>
+            <td class="st-time">2.1s</td>
+          </tr>
+          <tr>
+            <td class="st-claim">"Drinking lemon water every morning prevents cancer"</td>
+            <td><span class="st-verdict vb-f">FALSE</span></td>
+            <td class="st-sources">5 sources</td>
+            <td class="st-time">1.9s</td>
+          </tr>
+          <tr>
+            <td class="st-claim">"GPT-5 passed the bar exam with a perfect score"</td>
+            <td><span class="st-verdict vb-u">UNVERIFIABLE</span></td>
+            <td class="st-sources">2 sources</td>
+            <td class="st-time">2.4s</td>
+          </tr>
+          <tr>
+            <td class="st-claim">"Global average temperature rose 1.5C above pre-industrial levels"</td>
+            <td><span class="st-verdict vb-mt">MOSTLY TRUE</span></td>
+            <td class="st-sources">6 sources</td>
+            <td class="st-time">2.0s</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust-section">
+  <div class="trust-header">
+    <h2>Built for trust, not engagement</h2>
+    <p>We don't track your browsing. We don't sell your data. We don't optimize for clicks. We built OurTruth because truth shouldn't require an investigation.</p>
+  </div>
+  <div class="trust-grid">
+    <div class="trust-item">
+      <h4>No account required</h4>
+      <p>Install and start checking claims immediately. No email, no name, no sign-up wall.</p>
+    </div>
+    <div class="trust-item">
+      <h4>Transparent sources</h4>
+      <p>Every verdict shows its work. Cited sources you can click through and verify independently.</p>
+    </div>
+    <div class="trust-item">
+      <h4>Privacy-first architecture</h4>
+      <p>We process only the text you select. Your browsing data never leaves your device.</p>
+    </div>
+    <div class="trust-item">
+      <h4>Works on any webpage</h4>
+      <p>News sites, social media, blogs, forums, Wikipedia, PDFs — anywhere text appears.</p>
+    </div>
+    <div class="trust-item">
+      <h4>Free forever</h4>
+      <p>Truth shouldn't have a paywall. OurTruth is free for everyone, no premium tier.</p>
+    </div>
+    <div class="trust-item">
+      <h4>Open methodology</h4>
+      <p>Our evaluation criteria and source hierarchy are published. You can audit how we reach every verdict.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <h2>Start knowing what's true.</h2>
+    <div class="cta-right">
+      <p>Join thousands of readers who verify before they share. Install OurTruth in 10 seconds — no account, no payment, no catch.</p>
+      <a href="https://app.joinourtruth.com" class="btn-white">Add to Chrome — Free</a>
+      <div class="cta-note">Chrome Web Store. Works on all Chromium browsers.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-logo">
+        <div class="f-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        ourtruth
+      </div>
+      <span class="footer-copy">&copy; 2026 Overtone Studios LLC</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="/privacy">Privacy</a></li>
+      <li><a href="/terms">Terms</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
