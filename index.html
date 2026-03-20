@@ -24,27 +24,16 @@
     --gray-100: #f3f3f3;
     --gray-50: #f9f8f6;
     --white: #ffffff;
-    --cream: #fffcf8;
 
-    --warm-100: #fff4e6;
-    --warm-200: #ffe8cc;
-    --warm-300: #ffd19a;
-    --warm-400: #ffb366;
     --warm-500: #f59e42;
     --warm-600: #e08830;
 
-    --true: #1a7f37;
-    --true-bg: #dafbe1;
-    --mostly-true: #3d8b4f;
-    --mostly-true-bg: #e6f9ec;
-    --mixed: #9a6700;
-    --mixed-bg: #fff8c5;
-    --mostly-false: #bc4c00;
-    --mostly-false-bg: #fff1e5;
-    --false: #cf222e;
-    --false-bg: #ffebe9;
-    --unverifiable: #656d76;
-    --unverifiable-bg: #eef1f4;
+    --true: #1a7f37;     --true-bg: #dafbe1;     --true-bd: #a7f3d0;
+    --mt: #3d8b4f;       --mt-bg: #e6f9ec;       --mt-bd: #bbf7d0;
+    --mixed: #9a6700;    --mixed-bg: #fff8c5;    --mixed-bd: #fde68a;
+    --mf: #bc4c00;       --mf-bg: #fff1e5;       --mf-bd: #fdba74;
+    --false: #cf222e;    --false-bg: #ffebe9;    --false-bd: #fecaca;
+    --uv: #656d76;       --uv-bg: #eef1f4;       --uv-bd: #d4d4d8;
 
     --serif: 'Instrument Serif', Georgia, serif;
     --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -59,7 +48,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ---- GRADIENT BAR ---- */
+  /* ── GRADIENT BAR ── */
   .gradient-bar {
     height: 4px;
     background: linear-gradient(90deg, #f59e42, #f97316, #fb923c, #fdba74, #fcd34d, #f59e42);
@@ -70,7 +59,7 @@
     z-index: 200;
   }
 
-  /* ---- NAV ---- */
+  /* ── NAV ── */
   .nav {
     position: fixed;
     top: 4px;
@@ -165,7 +154,7 @@
   }
   .nav-mobile-toggle svg { width: 22px; height: 22px; }
 
-  /* ---- HERO ---- */
+  /* ── HERO (from index) ── */
   .hero {
     padding: 108px var(--px) 0;
     max-width: var(--max-w);
@@ -186,9 +175,7 @@
     letter-spacing: -1.5px;
     color: var(--black);
   }
-  .hero-right {
-    padding-top: 16px;
-  }
+  .hero-right { padding-top: 16px; }
   .hero-right p {
     font-size: 15.5px;
     line-height: 1.65;
@@ -233,18 +220,17 @@
   }
   .btn-outline:hover { border-color: var(--gray-400); color: var(--black); }
 
-  /* ---- HERO PRODUCT MOCKUP ---- */
+  /* ── HERO MOCKUP (from index) ── */
   .hero-mockup {
     max-width: var(--max-w);
     margin: 0 auto;
-    padding: 0 var(--px) 0;
+    padding: 0 var(--px);
   }
   .mockup-container {
     border-radius: 14px;
     overflow: hidden;
     background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 25%, #fecaca 50%, #e9d5ff 75%, #bfdbfe 100%);
     padding: 32px 32px 0;
-    position: relative;
   }
   .browser-chrome {
     border-radius: 10px 10px 0 0;
@@ -372,7 +358,7 @@
     letter-spacing: 0.3px;
     margin-bottom: 14px;
   }
-  .pop-verdict.mf { background: var(--mostly-false-bg); color: var(--mostly-false); }
+  .pop-verdict.mf { background: var(--mf-bg); color: var(--mf); }
   .pop-verdict svg { width: 13px; height: 13px; }
   .pop-src-label {
     font-size: 10px;
@@ -407,7 +393,7 @@
   }
   .pop-src a { color: var(--warm-600); font-size: 10.5px; text-decoration: none; }
 
-  /* ---- QUOTE STRIP ---- */
+  /* ── QUOTE STRIP (from index) ── */
   .quote-strip {
     max-width: var(--max-w);
     margin: 0 auto;
@@ -433,7 +419,7 @@
     white-space: nowrap;
   }
 
-  /* ---- STATS ---- */
+  /* ── STATS (from index) ── */
   .stats {
     max-width: var(--max-w);
     margin: 0 auto;
@@ -443,10 +429,7 @@
     gap: 0;
     border-bottom: 1px solid var(--gray-150);
   }
-  .stat {
-    text-align: center;
-    padding: 8px 0;
-  }
+  .stat { text-align: center; padding: 8px 0; }
   .stat:not(:last-child) { border-right: 1px solid var(--gray-150); }
   .stat-num {
     font-family: var(--serif);
@@ -463,16 +446,14 @@
     font-weight: 500;
   }
 
-  /* ---- EDITORIAL BLOCK ---- */
+  /* ── EDITORIAL (from index) ── */
   .editorial {
     max-width: var(--max-w);
     margin: 0 auto;
     padding: 80px var(--px);
     border-bottom: 1px solid var(--gray-150);
   }
-  .editorial-inner {
-    max-width: 720px;
-  }
+  .editorial-inner { max-width: 720px; }
   .editorial p {
     font-family: var(--serif);
     font-size: 28px;
@@ -485,19 +466,17 @@
     color: var(--gray-500);
   }
 
-  /* ---- SPLIT SECTIONS ---- */
-  .split {
+  /* ── SHARED SECTION STYLES (v1 presentation adapted to index design system) ── */
+  .section {
     max-width: var(--max-w);
     margin: 0 auto;
     padding: 80px var(--px);
-    display: grid;
-    grid-template-columns: 0.45fr 0.55fr;
-    gap: 64px;
-    align-items: start;
     border-bottom: 1px solid var(--gray-150);
   }
-  .split.reverse { grid-template-columns: 0.55fr 0.45fr; }
-  .split-label {
+  .section.bg-alt { background: var(--gray-50); }
+  .section.full-w { max-width: 100%; }
+  .section.full-w > .section-inner { max-width: var(--max-w); margin: 0 auto; }
+  .section-label {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -505,7 +484,81 @@
     color: var(--gray-400);
     margin-bottom: 14px;
   }
-  .split h2 {
+  .section h2 {
+    font-family: var(--serif);
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.8px;
+    color: var(--black);
+    margin-bottom: 18px;
+  }
+  .section-desc {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--gray-600);
+    margin-bottom: 36px;
+    max-width: 560px;
+  }
+
+  /* ── VERDICT GRID (v1 presentation, index colors) ── */
+  .vgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--gray-150);
+    border: 1px solid var(--gray-150);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .vcard {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px 20px;
+    background: var(--white);
+  }
+  .vpill {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .vpill svg { width: 13px; height: 13px; }
+  .vpill-true { background: var(--true-bg); color: var(--true); }
+  .vpill-mt { background: var(--mt-bg); color: var(--mt); }
+  .vpill-mx { background: var(--mixed-bg); color: var(--mixed); }
+  .vpill-mf { background: var(--mf-bg); color: var(--mf); }
+  .vpill-f { background: var(--false-bg); color: var(--false); }
+  .vpill-u { background: var(--uv-bg); color: var(--uv); }
+  .vclaim {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 4px;
+    font-style: italic;
+  }
+  .vreason {
+    font-size: 12.5px;
+    color: var(--gray-500);
+    line-height: 1.5;
+  }
+
+  /* ── SPLIT SECTIONS (feature blocks, v1 style adapted) ── */
+  .split {
+    display: grid;
+    grid-template-columns: 0.45fr 0.55fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .split.reverse { grid-template-columns: 0.55fr 0.45fr; }
+  .split-text h2 {
     font-family: var(--serif);
     font-size: 40px;
     line-height: 1.1;
@@ -519,21 +572,9 @@
     color: var(--gray-600);
     margin-bottom: 16px;
   }
-  .split-text-right {
-    padding-top: 8px;
-  }
-  .split-text-right p {
-    font-size: 14.5px;
-    line-height: 1.65;
-    color: var(--gray-600);
-  }
 
-  /* ---- FLOW STEPS ---- */
-  .flow {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  /* ── FLOW STEPS (from index style) ── */
+  .flow { display: flex; flex-direction: column; }
   .flow-step {
     display: grid;
     grid-template-columns: 36px 1fr;
@@ -565,186 +606,194 @@
     color: var(--gray-500);
   }
 
-  /* ---- VERDICT SECTION ---- */
-  .verdicts-section {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 80px var(--px);
-    border-bottom: 1px solid var(--gray-150);
-  }
-  .verdicts-header {
-    display: grid;
-    grid-template-columns: 0.45fr 0.55fr;
-    gap: 64px;
-    margin-bottom: 40px;
-  }
-  .verdicts-header h2 {
-    font-family: var(--serif);
-    font-size: 40px;
-    line-height: 1.1;
-    letter-spacing: -0.8px;
-  }
-  .verdicts-header p {
-    font-size: 14.5px;
-    line-height: 1.65;
-    color: var(--gray-600);
-    padding-top: 8px;
-  }
-  .verdict-table {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--gray-150);
+  /* ── FEATURE VISUAL BLOCKS (v1 presentation, index DS) ── */
+  .fvis {
+    background: var(--white);
     border: 1px solid var(--gray-150);
     border-radius: 10px;
-    overflow: hidden;
+    padding: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   }
-  .vt-row {
+  .fv-lbl {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 14px;
+  }
+
+  /* Source stack */
+  .src-stack { display: flex; flex-direction: column; gap: 7px; }
+  .scard {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 18px 20px;
-    background: var(--white);
+    gap: 10px;
+    padding: 9px 11px;
+    border: 1px solid var(--gray-150);
+    border-radius: 8px;
+    background: var(--gray-50);
   }
-  .vt-badge {
+  .sicon {
+    width: 26px;
+    height: 26px;
+    border-radius: 5px;
+    background: var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 11px;
+    color: var(--gray-500);
+    flex-shrink: 0;
+  }
+  .sinfo { flex: 1; min-width: 0; }
+  .sname { font-size: 11.5px; font-weight: 600; color: var(--black); }
+  .ssnip { font-size: 10.5px; color: var(--gray-500); line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sck {
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    background: var(--true-bg);
+    color: var(--true);
+    border: 1px solid var(--true-bd);
+  }
+
+  /* Reasoning trace */
+  .rtrace { display: flex; flex-direction: column; }
+  .rstep {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-150);
+  }
+  .rstep:last-child { border-bottom: none; }
+  .rn {
+    font-family: var(--serif);
+    font-size: 11px;
+    color: var(--gray-400);
+    flex-shrink: 0;
+    width: 16px;
+    padding-top: 1px;
+  }
+  .rt { font-size: 11.5px; color: var(--gray-600); line-height: 1.5; }
+  .rt-v { font-weight: 600; color: var(--false); }
+
+  /* Coverage list */
+  .cov-list { display: flex; flex-direction: column; gap: 6px; }
+  .crow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 13px;
+    border: 1px solid var(--gray-150);
+    border-radius: 8px;
+    background: var(--white);
+    font-size: 12.5px;
+    color: var(--gray-600);
+  }
+  .crow.muted { background: var(--gray-50); }
+  .active-tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--true);
+    background: var(--true-bg);
+    border: 1px solid var(--true-bd);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .soon-tag {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--gray-500);
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* Checklist */
+  .chklist { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  .chkrow {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13.5px;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+  .chkico { flex-shrink: 0; margin-top: 2px; }
+
+  /* Link arrow */
+  .link-arrow {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    padding: 4px 10px;
-    border-radius: 5px;
-    font-size: 11.5px;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    flex-shrink: 0;
-    min-width: 110px;
-  }
-  .vt-badge svg { width: 13px; height: 13px; }
-  .vt-desc {
-    font-size: 13px;
+    font-size: 13.5px;
     color: var(--gray-600);
-    line-height: 1.45;
+    text-decoration: none;
+    border-bottom: 1px solid var(--gray-200);
+    padding-bottom: 1px;
+    transition: color 0.12s, border-color 0.12s;
   }
-  .vb-true { background: var(--true-bg); color: var(--true); }
-  .vb-mt { background: var(--mostly-true-bg); color: var(--mostly-true); }
-  .vb-mx { background: var(--mixed-bg); color: var(--mixed); }
-  .vb-mf { background: var(--mostly-false-bg); color: var(--mostly-false); }
-  .vb-f { background: var(--false-bg); color: var(--false); }
-  .vb-u { background: var(--unverifiable-bg); color: var(--unverifiable); }
+  .link-arrow:hover { color: var(--black); border-color: var(--gray-400); }
 
-  /* ---- PRODUCT SHOWCASE ---- */
-  .showcase {
-    background: var(--gray-50);
+  /* ── TESTIMONIALS MARQUEE (from v1) ── */
+  .testi-sec {
+    padding: 80px 0;
     border-bottom: 1px solid var(--gray-150);
+    overflow: hidden;
   }
-  .showcase-inner {
+  .testi-hdr {
     max-width: var(--max-w);
     margin: 0 auto;
-    padding: 80px var(--px);
+    padding: 0 var(--px);
+    margin-bottom: 32px;
   }
-  .showcase-header {
-    display: grid;
-    grid-template-columns: 0.45fr 0.55fr;
-    gap: 64px;
-    margin-bottom: 40px;
+  .marquee { overflow: hidden; width: 100%; }
+  .mtrack {
+    display: flex;
+    gap: 14px;
+    animation: scroll 40s linear infinite;
+    width: max-content;
   }
-  .showcase-header h2 {
-    font-family: var(--serif);
-    font-size: 40px;
-    line-height: 1.1;
-    letter-spacing: -0.8px;
-  }
-  .showcase-header p {
-    font-size: 14.5px;
-    line-height: 1.65;
-    color: var(--gray-600);
-    padding-top: 8px;
-  }
-  .showcase-ui {
+  @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .tcard {
+    width: 300px;
+    flex-shrink: 0;
     background: var(--white);
     border: 1px solid var(--gray-150);
     border-radius: 10px;
-    overflow: hidden;
+    padding: 18px;
   }
-  .showcase-tabs {
-    display: flex;
-    border-bottom: 1px solid var(--gray-150);
-    padding: 0 20px;
-  }
-  .showcase-tab {
-    padding: 12px 16px;
+  .tq {
     font-size: 13px;
-    font-weight: 500;
-    color: var(--gray-500);
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-  }
-  .showcase-tab.active {
-    color: var(--black);
-    border-bottom-color: var(--black);
-    font-weight: 600;
-  }
-  .showcase-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .showcase-table th {
-    text-align: left;
-    padding: 10px 20px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 600;
-    color: var(--gray-400);
-    border-bottom: 1px solid var(--gray-150);
-    background: var(--gray-50);
-  }
-  .showcase-table td {
-    padding: 12px 20px;
-    font-size: 13px;
-    color: var(--gray-700);
-    border-bottom: 1px solid var(--gray-100);
-    vertical-align: middle;
-  }
-  .showcase-table tr:last-child td { border-bottom: none; }
-  .st-claim { max-width: 340px; line-height: 1.4; }
-  .st-verdict {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.2px;
-  }
-  .st-sources { color: var(--gray-500); font-size: 12px; }
-  .st-time { color: var(--gray-400); font-size: 12px; }
-
-  /* ---- TRUST SECTION ---- */
-  .trust-section {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 80px var(--px);
-    border-bottom: 1px solid var(--gray-150);
-  }
-  .trust-header {
-    display: grid;
-    grid-template-columns: 0.45fr 0.55fr;
-    gap: 64px;
-    margin-bottom: 48px;
-  }
-  .trust-header h2 {
-    font-family: var(--serif);
-    font-size: 40px;
-    line-height: 1.1;
-    letter-spacing: -0.8px;
-  }
-  .trust-header p {
-    font-size: 14.5px;
-    line-height: 1.65;
+    line-height: 1.6;
     color: var(--gray-600);
-    padding-top: 8px;
+    font-style: italic;
+    margin-bottom: 14px;
   }
+  .tauthor { display: flex; align-items: center; gap: 9px; }
+  .tav {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gray-500);
+    flex-shrink: 0;
+  }
+  .tname { font-size: 12px; font-weight: 600; color: var(--black); }
+  .trole { font-size: 11px; color: var(--gray-500); }
+
+  /* ── TRUST GRID (from index, 3-col) ── */
   .trust-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -754,10 +803,7 @@
     border-radius: 10px;
     overflow: hidden;
   }
-  .trust-item {
-    padding: 28px 24px;
-    background: var(--white);
-  }
+  .trust-item { padding: 28px 24px; background: var(--white); }
   .trust-item h4 {
     font-size: 14px;
     font-weight: 600;
@@ -770,10 +816,8 @@
     line-height: 1.55;
   }
 
-  /* ---- CTA ---- */
-  .cta {
-    background: var(--gray-900);
-  }
+  /* ── CTA (dark, from v1 approach adapted to index DS) ── */
+  .cta { background: var(--gray-900); }
   .cta-inner {
     max-width: var(--max-w);
     margin: 0 auto;
@@ -816,11 +860,8 @@
     margin-top: 10px;
   }
 
-  /* ---- FOOTER ---- */
-  .footer {
-    background: var(--gray-900);
-    border-top: 1px solid var(--gray-700);
-  }
+  /* ── FOOTER (from index) ── */
+  .footer { background: var(--gray-900); border-top: 1px solid var(--gray-700); }
   .footer-inner {
     max-width: var(--max-w);
     margin: 0 auto;
@@ -829,11 +870,7 @@
     align-items: center;
     justify-content: space-between;
   }
-  .footer-left {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
+  .footer-left { display: flex; align-items: center; gap: 6px; }
   .footer-logo {
     font-weight: 700;
     font-size: 13px;
@@ -852,16 +889,8 @@
     justify-content: center;
   }
   .footer-logo .f-mark svg { width: 10px; height: 10px; }
-  .footer-copy {
-    font-size: 12px;
-    color: var(--gray-500);
-    margin-left: 10px;
-  }
-  .footer-links {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-  }
+  .footer-copy { font-size: 12px; color: var(--gray-500); margin-left: 10px; }
+  .footer-links { display: flex; gap: 20px; list-style: none; }
   .footer-links a {
     font-size: 12px;
     color: var(--gray-400);
@@ -870,7 +899,7 @@
   }
   .footer-links a:hover { color: var(--white); }
 
-  /* ---- RESPONSIVE ---- */
+  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     :root { --px: 20px; }
     .nav-center { display: none; }
@@ -889,9 +918,7 @@
     .btn-dark, .btn-outline { justify-content: center; }
 
     .mockup-container { padding: 16px 16px 0; }
-    .browser-body {
-      grid-template-columns: 1fr;
-    }
+    .browser-body { grid-template-columns: 1fr; }
     .article-col { border-right: none; border-bottom: 1px solid var(--gray-150); padding: 16px; }
     .popup-col { padding: 16px; }
 
@@ -907,42 +934,19 @@
     .editorial { padding: 56px var(--px); }
     .editorial p { font-size: 22px; }
 
-    .split {
-      grid-template-columns: 1fr;
-      gap: 24px;
-      padding: 56px var(--px);
-    }
+    .section { padding: 56px var(--px); }
+    .section h2 { font-size: 32px; }
+    .split-text h2 { font-size: 32px; }
+    .split { grid-template-columns: 1fr; gap: 24px; }
     .split.reverse { grid-template-columns: 1fr; }
-    .split h2 { font-size: 32px; }
 
-    .verdicts-section { padding: 56px var(--px); }
-    .verdicts-header {
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-    .verdicts-header h2 { font-size: 32px; }
-    .verdict-table { grid-template-columns: 1fr; }
+    .vgrid { grid-template-columns: 1fr; }
 
-    .showcase-inner { padding: 56px var(--px); }
-    .showcase-header {
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-    .showcase-header h2 { font-size: 32px; }
-    .showcase-table { font-size: 12px; }
-    .showcase-table th, .showcase-table td { padding: 10px 12px; }
-    .st-claim { max-width: 180px; }
-
-    .trust-section { padding: 56px var(--px); }
-    .trust-header {
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-    .trust-header h2 { font-size: 32px; }
     .trust-grid { grid-template-columns: 1fr; }
+
+    .testi-hdr { padding: 0 var(--px); }
+    .testi-sec { padding: 56px 0; }
+    .tcard { width: 268px; }
 
     .cta-inner {
       grid-template-columns: 1fr;
@@ -956,7 +960,7 @@
 
   @media (min-width: 901px) and (max-width: 1100px) {
     .hero h1 { font-size: 52px; }
-    .split h2, .verdicts-header h2, .showcase-header h2, .trust-header h2 { font-size: 34px; }
+    .section h2, .split-text h2 { font-size: 34px; }
     .stat-num { font-size: 40px; }
   }
 </style>
@@ -980,8 +984,8 @@
       <li><a href="/contact">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <a href="https://app.joinourtruth.com" class="nav-btn-ghost">Open App</a>
-      <a href="https://app.joinourtruth.com" class="nav-btn-fill">Add to Chrome</a>
+      <a href="#" class="nav-btn-ghost">Open App</a>
+      <a href="#" class="nav-btn-fill">Add to Chrome</a>
     </div>
     <button class="nav-mobile-toggle" aria-label="Menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
@@ -989,7 +993,7 @@
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO (from index) -->
 <section class="hero">
   <div class="hero-grid">
     <div>
@@ -998,7 +1002,7 @@
     <div class="hero-right">
       <p>The only fact-checker built for the AI era. Highlight any claim on any webpage and get an instant, sourced verdict — right in your browser. Free, private, no account needed.</p>
       <div class="hero-actions">
-        <a href="https://app.joinourtruth.com" class="btn-dark">
+        <a href="#" class="btn-dark">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12l3 3 5-5"/></svg>
           Add to Chrome
         </a>
@@ -1008,7 +1012,7 @@
   </div>
 </section>
 
-<!-- PRODUCT MOCKUP -->
+<!-- PRODUCT MOCKUP (from index) -->
 <div class="hero-mockup">
   <div class="mockup-container">
     <div class="browser-chrome">
@@ -1091,158 +1095,218 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="split" id="how">
-  <div class="split-text">
-    <div class="split-label">How it works</div>
-    <h2>From claim to clarity in seconds</h2>
-    <p>No accounts, no setup, no learning curve. Install the extension and start verifying. OurTruth works on any webpage, in any language, on any topic.</p>
-  </div>
-  <div>
-    <div class="flow">
-      <div class="flow-step">
-        <div class="flow-num">1</div>
-        <div>
-          <h4>Highlight any claim</h4>
-          <p>Select text on any webpage — news articles, social posts, Wikipedia, blog comments, forum threads.</p>
-        </div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-num">2</div>
-        <div>
-          <h4>Click "Evaluate"</h4>
-          <p>OurTruth cross-references the claim against academic databases, verified reporting, official statistics, and trusted fact-checkers.</p>
-        </div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-num">3</div>
-        <div>
-          <h4>Read your verdict</h4>
-          <p>Receive a clear rating — TRUE to FALSE — with every source cited so you can verify it yourself.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VERDICTS -->
-<section class="verdicts-section">
-  <div class="verdicts-header">
-    <h2>Six verdicts, zero ambiguity</h2>
-    <p>Every claim receives one of six transparent ratings. No vague "it's complicated." Each verdict comes with cited evidence you can check independently.</p>
-  </div>
-  <div class="verdict-table">
-    <div class="vt-row">
-      <div class="vt-badge vb-true">
+<!-- VERDICT SPECTRUM (v1 content, index presentation) -->
+<section class="section">
+  <div class="section-label">Six-level verdict system</div>
+  <h2>Six verdicts, zero ambiguity</h2>
+  <p class="section-desc">Most fact-checkers give you a binary. Reality is more nuanced. OurTruth uses six calibrated verdicts — each with transparent sourced reasoning — to reflect the true epistemic state of a claim.</p>
+  <div class="vgrid">
+    <div class="vcard">
+      <div class="vpill vpill-true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         TRUE
       </div>
-      <span class="vt-desc">Accurate and supported by reliable, verifiable evidence.</span>
+      <div><div class="vclaim">"The Eiffel Tower grows taller in summer."</div><div class="vreason">Thermal expansion is documented: the tower height increases ~15cm during hot weather. Confirmed by structural engineering data.</div></div>
     </div>
-    <div class="vt-row">
-      <div class="vt-badge vb-mt">
+    <div class="vcard">
+      <div class="vpill vpill-mt">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         MOSTLY TRUE
       </div>
-      <span class="vt-desc">Largely accurate with minor omissions or imprecision in details.</span>
+      <div><div class="vclaim">"Exercise outperforms medication for anxiety."</div><div class="vreason">Multiple RCTs support this for mild-moderate cases. Severe anxiety disorders typically still require pharmacological intervention.</div></div>
     </div>
-    <div class="vt-row">
-      <div class="vt-badge vb-mx">
+    <div class="vcard">
+      <div class="vpill vpill-mx">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
         MIXED
       </div>
-      <span class="vt-desc">Contains both verifiable and unverifiable or inaccurate elements.</span>
+      <div><div class="vclaim">"Social media causes teen depression."</div><div class="vreason">Some studies find correlation; others find no causal link. Evidence is actively contested among researchers — no consensus yet.</div></div>
     </div>
-    <div class="vt-row">
-      <div class="vt-badge vb-mf">
+    <div class="vcard">
+      <div class="vpill vpill-mf">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         MOSTLY FALSE
       </div>
-      <span class="vt-desc">Significant inaccuracies. May contain a kernel of truth but misleads overall.</span>
+      <div><div class="vclaim">"Humans only use 10% of their brains."</div><div class="vreason">Neuroimaging shows near-total brain activity. The 10% figure is a persistent myth with no scientific origin or support.</div></div>
     </div>
-    <div class="vt-row">
-      <div class="vt-badge vb-f">
+    <div class="vcard">
+      <div class="vpill vpill-f">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         FALSE
       </div>
-      <span class="vt-desc">Not supported by evidence. Directly contradicts known, verified facts.</span>
+      <div><div class="vclaim">"The Great Wall is visible from space."</div><div class="vreason">Too narrow (~5-8m) to see from low Earth orbit with the naked eye. Multiple astronauts confirm this.</div></div>
     </div>
-    <div class="vt-row">
-      <div class="vt-badge vb-u">
+    <div class="vcard">
+      <div class="vpill vpill-u">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         UNVERIFIABLE
       </div>
-      <span class="vt-desc">Insufficient public evidence exists to confirm or refute the claim.</span>
+      <div><div class="vclaim">"Governments are hiding UFO evidence."</div><div class="vreason">No publicly verifiable evidence is available. Classified materials cannot be independently assessed.</div></div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCT SHOWCASE: RECENT CHECKS -->
-<section class="showcase">
-  <div class="showcase-inner">
-    <div class="showcase-header">
-      <h2>See OurTruth checking real claims</h2>
-      <p>Claims evaluated by real users across news, politics, health, and technology. Every verdict is backed by cited sources.</p>
+<!-- HOW IT WORKS (index structure + v1 content) -->
+<section class="section" id="how">
+  <div class="split">
+    <div class="split-text">
+      <div class="section-label">How it works</div>
+      <h2>From claim to clarity in seconds</h2>
+      <p>No accounts, no setup, no learning curve. Install the extension and start verifying. OurTruth works on any webpage, in any language, on any topic.</p>
     </div>
-    <div class="showcase-ui">
-      <div class="showcase-tabs">
-        <div class="showcase-tab active">Recent</div>
-        <div class="showcase-tab">Trending</div>
-        <div class="showcase-tab">Politics</div>
-        <div class="showcase-tab">Health</div>
+    <div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <div>
+            <h4>Highlight any claim</h4>
+            <p>Select text on any webpage — news articles, social posts, Wikipedia, blog comments, forum threads.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <div>
+            <h4>Click "Evaluate"</h4>
+            <p>OurTruth cross-references the claim against academic databases, verified reporting, official statistics, and trusted fact-checkers.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <div>
+            <h4>Read your verdict</h4>
+            <p>Receive a clear rating — TRUE to FALSE — with every source cited so you can verify it yourself.</p>
+          </div>
+        </div>
       </div>
-      <table class="showcase-table">
-        <thead>
-          <tr>
-            <th>Claim</th>
-            <th>Verdict</th>
-            <th>Sources</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="st-claim">"Electric vehicles produce more lifetime CO2 than gas cars"</td>
-            <td><span class="st-verdict vb-f">FALSE</span></td>
-            <td class="st-sources">4 sources</td>
-            <td class="st-time">1.8s</td>
-          </tr>
-          <tr>
-            <td class="st-claim">"The US national debt crossed $36 trillion in 2025"</td>
-            <td><span class="st-verdict vb-true">TRUE</span></td>
-            <td class="st-sources">3 sources</td>
-            <td class="st-time">2.1s</td>
-          </tr>
-          <tr>
-            <td class="st-claim">"Drinking lemon water every morning prevents cancer"</td>
-            <td><span class="st-verdict vb-f">FALSE</span></td>
-            <td class="st-sources">5 sources</td>
-            <td class="st-time">1.9s</td>
-          </tr>
-          <tr>
-            <td class="st-claim">"GPT-5 passed the bar exam with a perfect score"</td>
-            <td><span class="st-verdict vb-u">UNVERIFIABLE</span></td>
-            <td class="st-sources">2 sources</td>
-            <td class="st-time">2.4s</td>
-          </tr>
-          <tr>
-            <td class="st-claim">"Global average temperature rose 1.5C above pre-industrial levels"</td>
-            <td><span class="st-verdict vb-mt">MOSTLY TRUE</span></td>
-            <td class="st-sources">6 sources</td>
-            <td class="st-time">2.0s</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </section>
 
-<!-- TRUST -->
-<section class="trust-section">
-  <div class="trust-header">
-    <h2>Built for trust, not engagement</h2>
-    <p>We don't track your browsing. We don't sell your data. We don't optimize for clicks. We built OurTruth because truth shouldn't require an investigation.</p>
+<!-- FEATURE 1: Deep Research (v1 content + visual blocks) -->
+<section class="section bg-alt full-w">
+  <div class="section-inner">
+    <div class="split reverse">
+      <div class="fvis">
+        <div class="fv-lbl">Sources cross-referenced</div>
+        <div class="src-stack">
+          <div class="scard">
+            <div class="sicon">N</div>
+            <div class="sinfo"><div class="sname">Nature Medicine</div><div class="ssnip">Peer-reviewed meta-analysis: mRNA mechanism across 47 studies</div></div>
+            <div class="sck"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          </div>
+          <div class="scard">
+            <div class="sicon">W</div>
+            <div class="sinfo"><div class="sname">WHO.int</div><div class="ssnip">Global health authority on mRNA technology and immunology</div></div>
+            <div class="sck"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          </div>
+          <div class="scard">
+            <div class="sicon">P</div>
+            <div class="sinfo"><div class="sname">PubMed Central</div><div class="ssnip">Phase 3 clinical trial data across 12 international cohorts</div></div>
+            <div class="sck"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          </div>
+          <div class="scard" style="opacity:0.4">
+            <div class="sicon" style="font-size:16px;color:var(--gray-400)">···</div>
+            <div class="sinfo"><div class="sname">+ 9 more sources</div><div class="ssnip">FDA, CDC, NIH, Lancet, ECDC, independent research institutes</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="split-text">
+        <div class="section-label">Deep Research</div>
+        <h2>Hundreds of sources. Seconds to check.</h2>
+        <p>OurTruth cross-references peer-reviewed journals, government health bodies, established news archives, and academic databases — simultaneously — so you don't have to.</p>
+        <div class="chklist">
+          <div class="chkrow"><svg class="chkico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--true)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>PubMed, Nature, Science, The Lancet</div>
+          <div class="chkrow"><svg class="chkico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--true)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>WHO, CDC, FDA, NIH, ECDC</div>
+          <div class="chkrow"><svg class="chkico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--true)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Reuters, AP, BBC, NPR fact desks</div>
+          <div class="chkrow"><svg class="chkico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--true)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Snopes, PolitiFact, FactCheck.org</div>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
+
+<!-- FEATURE 2: Reasoning Trace -->
+<section class="section">
+  <div class="split">
+    <div class="split-text">
+      <div class="section-label">Transparent Reasoning</div>
+      <h2>See exactly how the verdict was reached.</h2>
+      <p>OurTruth doesn't just tell you what to think — it shows its work. Every verdict includes a numbered reasoning chain so you can follow the logic and verify each step yourself.</p>
+      <a href="#" class="link-arrow">
+        View a full reasoning example
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+    <div class="fvis">
+      <div class="fv-lbl">Reasoning trace</div>
+      <div class="rtrace">
+        <div class="rstep"><div class="rn">1.</div><div class="rt">Identified claim: assertion that mRNA vaccines permanently modify cellular DNA.</div></div>
+        <div class="rstep"><div class="rn">2.</div><div class="rt">Queried 3 molecular biology databases for mRNA transcription mechanism studies.</div></div>
+        <div class="rstep"><div class="rn">3.</div><div class="rt">Found 12 peer-reviewed sources; 12/12 contradict the claim with direct cellular evidence.</div></div>
+        <div class="rstep"><div class="rn">4.</div><div class="rt">Cross-referenced with WHO, CDC, and FDA official guidance — all three consistent.</div></div>
+        <div class="rstep"><div class="rn">5.</div><div class="rt">No credible dissenting studies found in PubMed or Web of Science databases.</div></div>
+        <div class="rstep"><div class="rn">→</div><div class="rt rt-v">Verdict: FALSE — scientific consensus is unanimous and comprehensively evidenced.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 3: Works Everywhere -->
+<section class="section bg-alt full-w">
+  <div class="section-inner">
+    <div class="split reverse">
+      <div class="fvis">
+        <div class="fv-lbl">Works on any site</div>
+        <div class="cov-list">
+          <div class="crow"><span>News articles</span><span class="active-tag">Active</span></div>
+          <div class="crow"><span>Social media posts</span><span class="active-tag">Active</span></div>
+          <div class="crow"><span>Wikipedia entries</span><span class="active-tag">Active</span></div>
+          <div class="crow"><span>PDF documents</span><span class="active-tag">Active</span></div>
+          <div class="crow"><span>Gmail &amp; Outlook</span><span class="active-tag">Active</span></div>
+          <div class="crow muted"><span style="color:var(--gray-500)">Paywalled content</span><span class="soon-tag">Coming soon</span></div>
+        </div>
+      </div>
+      <div class="split-text">
+        <div class="section-label">Universal Coverage</div>
+        <h2>Works wherever you read.</h2>
+        <p>From Twitter threads to scientific papers — OurTruth works on any website. Just highlight and right-click. No copy-pasting, no tab-switching, no manual searching.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS MARQUEE (from v1) -->
+<section class="testi-sec">
+  <div class="testi-hdr">
+    <div class="section-label">What people are saying</div>
+    <h2 style="font-family:var(--serif);font-size:40px;line-height:1.1;letter-spacing:-0.8px;color:var(--black);">Trusted by critical thinkers.</h2>
+  </div>
+  <div class="marquee">
+    <div class="mtrack">
+      <div class="tcard"><div class="tq">"I use OurTruth every time I read political news. It has completely changed how I navigate information online."</div><div class="tauthor"><div class="tav">SL</div><div><div class="tname">Sarah L.</div><div class="trole">Investigative Journalist, Reuters</div></div></div></div>
+      <div class="tcard"><div class="tq">"The reasoning trace is remarkable. You can literally watch it think through a claim step by step. It's made me a more careful reader."</div><div class="tauthor"><div class="tav">MK</div><div><div class="tname">Marcus K.</div><div class="trole">Professor of Media Studies, Columbia</div></div></div></div>
+      <div class="tcard"><div class="tq">"I show it to my students to demonstrate how to evaluate sources. The six-verdict system perfectly captures epistemic nuance."</div><div class="tauthor"><div class="tav">AR</div><div><div class="tname">Aisha R.</div><div class="trole">High School Science Teacher</div></div></div></div>
+      <div class="tcard"><div class="tq">"As a doctor, I constantly battle health misinformation. OurTruth has become my go-to when sharing rebuttals with patients."</div><div class="tauthor"><div class="tav">DW</div><div><div class="tname">Dr. David W.</div><div class="trole">Primary Care Physician, Boston</div></div></div></div>
+      <div class="tcard"><div class="tq">"The MIXED verdict is the most underrated feature. Real life is nuanced, and it's the first tool that actually reflects that honestly."</div><div class="tauthor"><div class="tav">JT</div><div><div class="tname">James T.</div><div class="trole">Policy Analyst, Washington D.C.</div></div></div></div>
+      <div class="tcard"><div class="tq">"My book club uses it to vet statistics cited in nonfiction. We've already caught three factual errors in published books."</div><div class="tauthor"><div class="tav">PM</div><div><div class="tname">Priya M.</div><div class="trole">Software Engineer &amp; avid reader</div></div></div></div>
+      <div class="tcard"><div class="tq">"Finally a fact-checker that doesn't talk down to you. It shows the sources and lets you decide — that's intellectual respect."</div><div class="tauthor"><div class="tav">CN</div><div><div class="tname">Chris N.</div><div class="trole">Graduate researcher, Oxford</div></div></div></div>
+      <!-- duplicate for seamless loop -->
+      <div class="tcard"><div class="tq">"I use OurTruth every time I read political news. It has completely changed how I navigate information online."</div><div class="tauthor"><div class="tav">SL</div><div><div class="tname">Sarah L.</div><div class="trole">Investigative Journalist, Reuters</div></div></div></div>
+      <div class="tcard"><div class="tq">"The reasoning trace is remarkable. You can literally watch it think through a claim step by step. It's made me a more careful reader."</div><div class="tauthor"><div class="tav">MK</div><div><div class="tname">Marcus K.</div><div class="trole">Professor of Media Studies, Columbia</div></div></div></div>
+      <div class="tcard"><div class="tq">"I show it to my students to demonstrate how to evaluate sources. The six-verdict system perfectly captures epistemic nuance."</div><div class="tauthor"><div class="tav">AR</div><div><div class="tname">Aisha R.</div><div class="trole">High School Science Teacher</div></div></div></div>
+      <div class="tcard"><div class="tq">"As a doctor, I constantly battle health misinformation. OurTruth has become my go-to when sharing rebuttals with patients."</div><div class="tauthor"><div class="tav">DW</div><div><div class="tname">Dr. David W.</div><div class="trole">Primary Care Physician, Boston</div></div></div></div>
+      <div class="tcard"><div class="tq">"The MIXED verdict is the most underrated feature. Real life is nuanced, and it's the first tool that actually reflects that honestly."</div><div class="tauthor"><div class="tav">JT</div><div><div class="tname">James T.</div><div class="trole">Policy Analyst, Washington D.C.</div></div></div></div>
+      <div class="tcard"><div class="tq">"My book club uses it to vet statistics cited in nonfiction. We've already caught three factual errors in published books."</div><div class="tauthor"><div class="tav">PM</div><div><div class="tname">Priya M.</div><div class="trole">Software Engineer &amp; avid reader</div></div></div></div>
+      <div class="tcard"><div class="tq">"Finally a fact-checker that doesn't talk down to you. It shows the sources and lets you decide — that's intellectual respect."</div><div class="tauthor"><div class="tav">CN</div><div><div class="tname">Chris N.</div><div class="trole">Graduate researcher, Oxford</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST (from index) -->
+<section class="section">
+  <div class="section-label">Built for trust</div>
+  <h2>Built for trust, not engagement</h2>
+  <p class="section-desc">We don't track your browsing. We don't sell your data. We don't optimize for clicks. We built OurTruth because truth shouldn't require an investigation.</p>
   <div class="trust-grid">
     <div class="trust-item">
       <h4>No account required</h4>
@@ -1271,19 +1335,19 @@
   </div>
 </section>
 
-<!-- CTA -->
+<!-- CTA (from index style) -->
 <section class="cta">
   <div class="cta-inner">
     <h2>Start knowing what's true.</h2>
     <div class="cta-right">
       <p>Join thousands of readers who verify before they share. Install OurTruth in 10 seconds — no account, no payment, no catch.</p>
-      <a href="https://app.joinourtruth.com" class="btn-white">Add to Chrome — Free</a>
+      <a href="#" class="btn-white">Add to Chrome — Free</a>
       <div class="cta-note">Chrome Web Store. Works on all Chromium browsers.</div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER (from index) -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-left">
